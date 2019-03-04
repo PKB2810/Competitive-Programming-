@@ -1,0 +1,76 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FightTheMonsters
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            long n = 0, hit = 0, t = 0;
+            int monstersKilled = 0;
+
+            string[] inputs = Console.ReadLine().Split(null);
+
+            if (inputs.Length == 0 || inputs.Length > 3)
+                System.Environment.Exit(1);
+
+            n = Int64.Parse(inputs[0]);
+            hit = Int64.Parse(inputs[1]);
+
+            t = Int64.Parse(inputs[2]);
+
+            long[] health = new long[n];
+
+            string[] healthOfMonsters = Console.ReadLine().Split(null);
+
+            if (healthOfMonsters.Length == 0 || healthOfMonsters.Length > n)
+                System.Environment.Exit(1);
+
+            for (int i = 0; i < n; i++) {
+
+                     health[i]  =  Int64.Parse(healthOfMonsters[i]);
+
+                if (health[i] < 1 || health[i] > (long)Math.Pow(10, 9))
+                    System.Environment.Exit(1);
+                    
+
+            }
+
+            Array.Sort(health);
+
+            int j = 0;
+            while (t > 0) {
+
+                if (j >=n) {
+
+                    Console.WriteLine(monstersKilled);
+                    System.Environment.Exit(1);
+
+
+                }
+                health[j] = health[j] - hit;
+
+                if (health[j] <= 0) {
+
+                    j++;
+
+                    monstersKilled++;
+
+                }
+
+
+                t--;
+
+            }
+
+
+            Console.WriteLine(monstersKilled);
+
+        }
+    }
+}
