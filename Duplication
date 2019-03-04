@@ -1,0 +1,102 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Duplication
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            StringBuilder sinit = new StringBuilder();
+            StringBuilder tinit = new StringBuilder();
+            StringBuilder sexpanded = new StringBuilder();
+            StringBuilder temp = new StringBuilder();
+
+            sinit.Append('0');
+            tinit.Append('1');
+            sexpanded.Append(sinit);
+            sexpanded.Append(tinit);
+
+            int len = sexpanded.Length;
+            while (len < 1000)
+            {
+
+
+
+                foreach (char c in sexpanded.ToString())
+                {
+
+                    int num = (Int32)c - 48;
+
+                    int num2 = 1 - num;
+
+                    temp.Append(num2.ToString());
+
+
+
+
+                }
+
+                sexpanded.Append(temp);
+                len = sexpanded.Length;
+
+                temp.Clear();
+
+
+
+            }
+
+            if (len > 1000)
+            {
+                int diff = len - 1001;
+                sexpanded.Remove(1001, diff);
+
+            }
+
+            int size = sexpanded.Length;
+
+            string str = sexpanded.ToString();
+
+            int q = Int32.Parse(Console.ReadLine());
+            if (q < 0 || q > 1000)
+                System.Environment.Exit(1);
+
+
+            int[] x = new int[1001];
+            for (int k = 0; k < q; k++)
+            {
+
+                x[k] = Int32.Parse(Console.ReadLine());
+
+                if (x[k] < 0 || x[k] > 1000)
+                    System.Environment.Exit(1);
+
+
+
+
+            }
+
+            for (int k = 0; k < q; k++)
+            {
+
+                int index = x[k];
+                Console.WriteLine(str.ElementAt(index));
+
+            }
+
+
+
+
+            Console.ReadLine();
+
+
+
+
+
+
+        }
+    }
+}
